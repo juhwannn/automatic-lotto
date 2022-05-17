@@ -70,7 +70,6 @@ const nextJsRequestHandler = nextJs.getRequestHandler();
         expressServer.use(RouterUtil.extendReqRes);
         expressServer.use(SignedCookieLogic.extendReqRes);
 
-
         expressServer.use('/api', require('./serverSides/routes/api'));
 
         if (nextJsEnabled) expressServer.get('*', (req, res) => {
