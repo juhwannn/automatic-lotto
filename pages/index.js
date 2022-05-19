@@ -26,8 +26,8 @@ export default function Home() {
 
     useEffect(() => {
         (async () => {
-            const response = await axios.get("/api/test");
-            console.log("response : " + JSON.stringify(response.data));
+            // const response = await axios.get("/api/test");
+            // console.log("response : " + JSON.stringify(response.data));
         })();
     }, []);
 
