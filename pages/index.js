@@ -9,9 +9,10 @@ const Root = styled.div`
         height: 5vh; 
     }
     
-    .mainBody {
+    .mainBody1 {
         background: green;
         
+        width: 100%;
         min-height: 90vh;
     }
     
@@ -37,8 +38,20 @@ export default function Home() {
                 mainHeader
             </div>
 
-            <div className="mainBody">
-                mainBody
+            <div className="mainBody1">
+                mainBody1
+            </div>
+
+            <div className="mainBody2">
+                mainBody2
+            </div>
+
+            <div className="mainBody3">
+                mainBody3
+            </div>
+
+            <div className="mainBody4">
+                mainBody4
             </div>
 
             <div className="mainFooter">
