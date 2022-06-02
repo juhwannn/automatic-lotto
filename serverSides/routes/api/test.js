@@ -18,13 +18,13 @@ router.get('/', wrapTryCatch(async (req, res) => {
     const page = await browser.newPage();
     await page.goto('https://dhlottery.co.kr/user.do?method=login&returnUrl=');
 
-    const lottoId = "";
-    const lottoPw = "";
+    const lottoId = process.env.LOTTO_ID;
+    const lottoPw = process.env.LOTTO_PW;
+
     await page.evaluate((id, pw) => {
         document.querySelector('#userId').value = id;
         document.querySelector('#article > div:nth-child(2) > div > form > div > div.inner > fieldset > div.form > input[type=password]:nth-child(2)').value = pw;
     }, lottoId, lottoPw);
-
 
     await page.click('#article > div:nth-child(2) > div > form > div > div.inner > fieldset > div.form > a');
     await page.waitForNavigation();
