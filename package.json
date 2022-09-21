@@ -2,10 +2,11 @@
   "name": "automatic-lotto",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "cross-env NODE_ENV=development node automaticLotto.js",
+    "stg": "cross-env NODE_ENV=staging node automaticLotto.js",
+    "prd": "cross-env NODE_ENV=production node automaticLotto.js",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "cross-env NODE_ENV=production node automaticLotto.js"
   },
   "dependencies": {
     "axios": "^0.27.2",
