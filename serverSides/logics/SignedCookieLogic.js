@@ -1,12 +1,12 @@
 console.log(`${__filename}:1`);
 
-const cookeKeyUserSeq = 'UserSeq';
+const cookeKeyUserSeq = 'UserId';
 const cookeKeyUser = 'User';
 
 module.exports = {
     extendReqRes: (req, res, next) => {
         res.signedCookieUserSet = user => {
-            res.cookieSetSigned(cookeKeyUserSeq, user.seq);
+            res.cookieSetSigned(cookeKeyUserSeq, user.UserId);
             res.cookieSetSigned(cookeKeyUser, JSON.stringify(user));
         };
         req.getUserSeq = () => req.signedCookies[cookeKeyUserSeq];

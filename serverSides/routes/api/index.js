@@ -7,7 +7,7 @@ const RouterUtil = require('../../utils/RouterUtil');
 const wrapTryCatch = RouterUtil.wrapTryCatch;
 
 
-router.use('/test', require('./test'));
+router.use('/lotto', require('./lotto'));
 router.use('/auth', require('./auth'));
 
 module.exports = router;
