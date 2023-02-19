@@ -1,61 +1,40 @@
 import styled from "styled-components";
 import React, {useEffect} from "react";
 import axios from "axios";
+import {useRouter} from "next/router";
 
 const Root = styled.div`
-    .mainHeader {
-        background: red;
-            
-        height: 5vh; 
-    }
+    text-align: center;
     
-    .mainBody1 {
-        background: green;
-        
+    .mainBody {
         width: 100%;
-        min-height: 90vh;
+        min-height: 86vh;
     }
     
     .mainFooter {
-        background: blue;
+        width: 100%;
+        height: 7vh;
         
-        height: 5vh;
+        font-size: 15px;
+        font-weight: lighter;
+        
+        padding-top: 2vh;
     }
 `;
 
 export default function Home() {
 
-    useEffect(() => {
-        (async () => {
-            // const response = await axios.get("/api/test");
-            // console.log("response : " + JSON.stringify(response.data));
-        })();
-    }, []);
+    const router = useRouter();
 
     return (
         <Root>
-            <div className="mainHeader">
-                mainHeader
-            </div>
-
-            <div className="mainBody1">
-                mainBody1
-            </div>
-
-            <div className="mainBody2">
-                mainBody2
-            </div>
-
-            <div className="mainBody3">
-                mainBody3
-            </div>
-
-            <div className="mainBody4">
-                mainBody4
+            <div className="mainBody">
+                Cover your page.
+                Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.
             </div>
 
             <div className="mainFooter">
-                mainFooter
+                Copyright 2022. juhwannn all rights reserved.
             </div>
         </Root>
     )

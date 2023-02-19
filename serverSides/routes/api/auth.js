@@ -56,6 +56,7 @@ router.post("/login", wrapTryCatch(async (req, res) => {
     if (!row) {
         return res.renderJson403();
     }
+
     const checkPassword = await BcryptLogic.compare(password, row.UserPwd);
     if (!checkPassword) {
         return res.renderJson403();
@@ -94,7 +95,7 @@ router.get('/getUser', wrapTryCatch(async (req, res) => {
         return res.renderJson();
     }
 
-    const row = await selectOne(`SELECT * FROM USER WHERE seq = ?`, user.seq);
+    const row = await selectOne(`SELECT * FROM User WHERE UserId = ?`, user.UserId);
 
     // 접속 가능상태가 아니면 쿠키 삭제
     if (row.state !== "Access") {
@@ -106,7 +107,7 @@ router.get('/getUser', wrapTryCatch(async (req, res) => {
         return res.renderJson();
     }
 
-    delete row.password;
+    delete row.UserPwd;
 
     res.renderJson({
         user: row,
@@ -114,40 +115,9 @@ router.get('/getUser', wrapTryCatch(async (req, res) => {
 }));
 
 
-/**
- * @openapi
- * /api/auth/logout:
- *   post:
- *     description: 로그아웃 API
- *     requestBody:
- *       required: true
- *       content:
- *         application/x-www-form-urlencoded:
- *           schema:
- *             type: object
- *             properties:
- *               refreshToken: { type: string }
- *             required: [refreshToken]
- *     responses: { 200: { description: user } }
- */
 router.post('/logout', wrapTryCatch(async (req, res) => {
-    try {
-        const user = req.getUser();
-        if (!user)
-            return;
-
-        const refreshToken = req.get('refreshToken');
-        if (!refreshToken)
-            return;
-
-        await models.EmployeeRefreshTokenDeny.create({
-            employee: user.seq,
-            jwt: refreshToken,
-        });
-    } finally {
-        res.signedCookieAccessTokenRemove();
-        res.renderJson({});
-    }
+    res.signedCookieUserRemove();
+    res.renderJson({});
 }));
 
 router.post('/join', wrapTryCatch(async (req, res) => {
